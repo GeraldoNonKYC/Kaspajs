@@ -54,6 +54,16 @@ module.exports = class walletNode extends EventEmitter {
     })
   }
 
+  getBalance () {
+    return new Promise((resolve, reject) => {
+      this._client.GetBalance({}, (err, data) => {
+        if (err !== null) return reject(err)
+
+        resolve(data)
+      })
+    })
+  }
+	
   send (recipient, amount, password) {
     return new Promise((resolve, reject) => {
       this._client.Send({ toAddress: recipient, amount, password, from: [] }, (err, data) => {
