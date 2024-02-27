@@ -13,6 +13,7 @@ service kaspawalletd {
   rpc Broadcast (BroadcastRequest) returns (BroadcastResponse) {}
   // Since SendRequest contains a password - this command should only be used on a trusted or secure connection
   rpc Send(SendRequest) returns (SendResponse) {}
+  rpc SendWithFee(SendRequestWithFee) returns (SendResponse) {}
   // Since SignRequest contains a password - this command should only be used on a trusted or secure connection
   rpc Sign(SignRequest) returns (SignResponse) {}
   rpc CheckIfAddressesAreValid (CheckIfAddressesAreValidRequest) returns (CheckIfAddressesAreValidResponse) {}
@@ -110,6 +111,15 @@ message SendRequest{
   uint64 amount = 2;
   string password = 3;
   repeated string from = 4;
+}
+
+message SendRequestWithFee{
+  string toAddress = 1;
+  uint64 amount = 2;
+  string password = 3;
+  repeated string from = 4;
+  uint64 fee = 5;
+  string changeAddrOverride = 6;
 }
 
 message SendResponse{
