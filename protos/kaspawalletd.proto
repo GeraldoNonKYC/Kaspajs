@@ -12,8 +12,8 @@ service kaspawalletd {
   rpc Shutdown (ShutdownRequest) returns (ShutdownResponse) {}
   rpc Broadcast (BroadcastRequest) returns (BroadcastResponse) {}
   // Since SendRequest contains a password - this command should only be used on a trusted or secure connection
-  rpc Send(SendRequest) returns (SendResponse) {}
-  rpc SendWithFee(SendRequestWithFee) returns (SendResponse) {}
+  //rpc Send(SendRequest) returns (SendResponse) {}
+  rpc Send(SendRequestWithFee) returns (SendResponse) {}
   // Since SignRequest contains a password - this command should only be used on a trusted or secure connection
   rpc Sign(SignRequest) returns (SignResponse) {}
   rpc CheckIfAddressesAreValid (CheckIfAddressesAreValidRequest) returns (CheckIfAddressesAreValidResponse) {}
