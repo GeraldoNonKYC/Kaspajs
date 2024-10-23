@@ -66,7 +66,7 @@ module.exports = class walletNode extends EventEmitter {
 	
   send (recipient, amount, password) {
     return new Promise((resolve, reject) => {
-      this._client.Send({ toAddress: recipient, amount, password, from: [], fee: 0 }, (err, data) => {
+      this._client.Send({ toAddress: recipient, amount, password, from: [], useExistingChangeAddress, isSendAll, feePolicy }, (err, data) => {
         if (err !== null) return reject(err)
 
         resolve(data.txIDs)
@@ -76,7 +76,7 @@ module.exports = class walletNode extends EventEmitter {
 
   sendFrom (sender, recipient, amount, password) {
     return new Promise((resolve, reject) => {
-      this._client.Send({ toAddress: recipient, amount, password, from: [ sender ], fee: 0 }, (err, data) => {
+      this._client.Send({ toAddress: recipient, amount, password, from: [ sender ], useExistingChangeAddress, isSendAll, feePolicy }, (err, data) => {
         if (err !== null) return reject(err)
 
         resolve(data.txIDs)
@@ -86,7 +86,7 @@ module.exports = class walletNode extends EventEmitter {
 
   sendWithFee (recipient, amount, password, fee, changeAddrOverride) {
     return new Promise((resolve, reject) => {
-      this._client.Send({ toAddress: recipient, amount, password, from: [], fee, changeAddrOverride }, (err, data) => {
+      this._client.Send({ toAddress: recipient, amount, password, from: [], useExistingChangeAddress, isSendAll, feePolicy }, (err, data) => {
         if (err !== null) return reject(err)
 
         resolve(data.txIDs)
